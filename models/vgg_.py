@@ -103,7 +103,7 @@ def _vgg(arch, cfg, batch_norm, pretrained, progress, sync=False, **kwargs):
         kwargs['init_weights'] = False
     model = VGG(make_layers(cfgs[cfg], batch_norm=batch_norm, sync=sync), **kwargs)
     if pretrained:
-        state_dict = torch.load(model_urls[arch])
+        state_dict = torch.hub.load_state_dict_from_url(model_urls[arch])
         model.load_state_dict(state_dict)
     return model
 
